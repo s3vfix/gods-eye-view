@@ -10112,6 +10112,18 @@ body.scene-playback-mode #key-setup {
     overflow: hidden;
   }
 
+  /* The two top corner blocks are 309px and 283px wide and both sit at top:120px,
+     so on a 412px phone they overlap by 212px and render as text on top of text.
+     Stack the right one under the left instead of hiding either: both are
+     flavour readouts, and neither is worth losing. The right-hand bracket stays
+     at the right edge, so it reads as a second framed block. */
+  body.mobile-shell #intel-hud .hud-top-right,
+  body.mobile-shell #intel-hud[data-variant='tactical'] .hud-top-right,
+  body.mobile-shell #intel-hud[data-variant='operator'] .hud-top-right,
+  body.mobile-shell #intel-hud[data-variant='minimal'] .hud-top-right {
+    top: 216px;
+  }
+
   body.mobile-shell #intel-hud .hud-bottom-left,
   body.mobile-shell #intel-hud #hud-mgrs,
   body.mobile-shell #intel-hud #hud-latlon,
