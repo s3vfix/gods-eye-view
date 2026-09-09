@@ -9,27 +9,31 @@ import sharp from "sharp";
 import { writeFile } from 'node:fs/promises';
 
 const MASTER = '/srv/filer/kode/worldview/public/3-klover-removebg-preview.png';
+// The master carries a wide transparent border, so scaling it straight to 78% of
+// a tile leaves the visible clover at roughly 45% and it reads as a speck at 16px.
+// Trim to the mark's own bounding box first, then scale that.
+const mark = async (size) => sharp(MASTER).trim()
+  .resize(size, size, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+  .png().toBuffer();
 const OUT = '/srv/filer/kode/gods-eye-view/public';
 const BG = '#0a0a0f';          // --bg-dark, this app's own background
 const ACCENT = '#00d4ff';      // --accent, this app's own cyan
 
 // Transparent mark for the in-app header and boot splash.
-await sharp(MASTER).resize(256, 256, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
-  .png().toFile(`${OUT}/s3v-clover.png`);
+await writeFile(`${OUT}/s3v-clover.png`, await mark(256));
 
 // Square icons: clover at 78% of a solid tile, matching s3v.no's own icon scale.
 for (const size of [16, 32, 180, 192, 512]) {
   const inner = Math.round(size * 0.78);
   const pad = Math.round((size - inner) / 2);
-  const mark = await sharp(MASTER).resize(inner, inner, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer();
   await sharp({ create: { width: size, height: size, channels: 4, background: BG } })
-    .composite([{ input: mark, top: pad, left: pad }])
+    .composite([{ input: await mark(inner), top: pad, left: pad }])
     .png().toFile(`${OUT}/icon-${size}.png`);
 }
 
 // Social card: clover beside the wordmark, the pair centred as one block.
 const CARD_MARK = 360, CARD_LEFT = 148, TEXT_LEFT = CARD_LEFT + CARD_MARK + 60;
-const cardMark = await sharp(MASTER).resize(CARD_MARK, CARD_MARK, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer();
+const cardMark = await mark(CARD_MARK);
 // Sized so the 20-character tagline fits inside 1200px at this letter-spacing:
 // DejaVu Sans Mono advances 0.602em, so 20 * (32 * 0.602 + 5) = 484px.
 const wordmark = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
