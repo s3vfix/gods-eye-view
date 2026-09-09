@@ -3,8 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>God's Eye View</title>
-  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <title>S3V - live spatial intelligence on a photorealistic globe</title>
+  <meta name="description" content="A photorealistic 3D globe carrying live aircraft, vessels, satellites, earthquakes, fires, traffic and cameras from public data sources." />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/icon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/icon-180.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#0a0a0f" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="S3V" />
+  <meta property="og:title" content="S3V - live spatial intelligence on a photorealistic globe" />
+  <meta property="og:description" content="Live aircraft, vessels, satellites, earthquakes, fires, traffic and cameras on a photorealistic 3D globe." />
+  <meta property="og:url" content="https://w.s3v.no/" />
+  <meta property="og:image" content="https://w.s3v.no/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://w.s3v.no/og-image.png" />
   <link rel="stylesheet" href="/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,7 +39,7 @@
   <!-- Title -->
   <div id="title-bar">
     <div class="title-glow"></div>
-    <h1><span class="title-logo brand-logo" data-logo-gaze data-logo-src="/logo.svg" aria-hidden="true"><img src="/logo.svg" alt="" /></span> <span>GOD'S EYE <span class="title-accent">VIEW</span></span></h1>
+    <h1><span class="title-logo brand-logo" aria-hidden="true"><img src="/s3v-clover.png" alt="" /></span> <span>S<span class="title-accent">3</span>V</span></h1>
     <p class="subtitle">NO PLACE LEFT BEHIND</p>
   </div>
 
@@ -879,7 +893,7 @@
     </div>
     <!-- Kept out of the footer row: it swaps to mission progress and errors, and
          a live region that also holds layout makes the row jump as it speaks. -->
-    <p class="first-run-note" data-first-run-status role="status" aria-live="polite">Tip: the GEV MIC button in the dock lets you talk to the map.</p>
+    <p class="first-run-note" data-first-run-status role="status" aria-live="polite">Tip: the S3V MIC button in the dock lets you talk to the map.</p>
   </aside>
 
   <!-- POWER UP — in-app key setup. Dev-server only: src/keySetup.js removes
@@ -914,8 +928,8 @@
   <!-- Loading screen -->
   <div id="loading-screen">
     <div class="loader-content">
-      <span class="loader-logo brand-logo" data-logo-gaze data-logo-src="/logo.svg" aria-hidden="true"><img src="/logo.svg" alt="" /></span>
-      <h2>GOD'S EYE <span class="title-accent">VIEW</span></h2>
+      <span class="loader-logo brand-logo" aria-hidden="true"><img src="/s3v-clover.png" alt="" /></span>
+      <h2>S<span class="title-accent">3</span>V</h2>
       <p class="loader-status">Initializing photorealistic world...</p>
     </div>
   </div>
